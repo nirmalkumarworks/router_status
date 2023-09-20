@@ -7,6 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel,Field
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 # Model
 class Item(BaseModel):
@@ -22,6 +23,13 @@ class Each_device_data(BaseModel):
 # class Connection_data(BaseModel):
 #     dict[each_device_data]
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Server start
 @app.on_event("startup")
