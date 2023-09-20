@@ -18,8 +18,8 @@ class each_device_data(BaseModel):
     mac: str = Field(..., example="00:1A:2B:3C:4D:5E")
     device: int = Field(..., example=123)
 
-class Connection_data(BaseModel):
-    dict[each_device_data]
+# class Connection_data(BaseModel):
+#    dict[each_device_data]
 app = FastAPI()
 
 # Server start
