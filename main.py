@@ -6,6 +6,7 @@ import uvicorn
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel,Field
+from typing import List
 
 # Model
 class Item(BaseModel):
@@ -52,7 +53,7 @@ async def device_deactive():
         return {"message": "deactivated successfully"}
 
 @app.post("/connection/update")
-async def update_connection(connection_data : list[Each_device_data]):
+async def update_connection(connection_data : List[Each_device_data]):
     is_updated = helper.update_device_connected_data(connection_data)
     if (is_updated):
         return {"message": "Updated successfully"}
