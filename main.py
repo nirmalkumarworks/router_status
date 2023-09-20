@@ -34,6 +34,10 @@ async def startup_event():
 async def shutdown_event():
     print('server Shutdown :', datetime.datetime.now())
 
+@app.get("/")
+async def health_check():
+    return {"message": "Server is Active"}
+
 @app.get("/status/now")
 async def current_status():
     status_of_router = helper.get_data()
