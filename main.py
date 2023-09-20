@@ -13,13 +13,13 @@ class Item(BaseModel):
     connectedCount: int
     connectedData: Union[list , None] = None
 
-class each_device_data(BaseModel):
+class Each_device_data(BaseModel):
     ip: str = Field(..., example="192.168.1.1")
     mac: str = Field(..., example="00:1A:2B:3C:4D:5E")
     device: int = Field(..., example=123)
 
 # class Connection_data(BaseModel):
-#    dict[each_device_data]
+#     dict[each_device_data]
 app = FastAPI()
 
 # Server start
@@ -52,7 +52,7 @@ async def device_deactive():
         return {"message": "deactivated successfully"}
 
 @app.post("/connection/update")
-async def update_connection(connection_data : list[each_device_data]):
+async def update_connection(connection_data : list[Each_device_data]):
     is_updated = helper.update_device_connected_data(connection_data)
     if (is_updated):
         return {"message": "Updated successfully"}
